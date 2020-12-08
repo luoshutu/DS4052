@@ -44,7 +44,7 @@ void ds4052::setChannel(int channel)
 //--输入：数据长度-----------------------//
 //--输出：无-----------------------------//
 //--功能：存当前的示波器波形数据---------//
-void ds4052::saveChannelData(int dataLength)
+void ds4052::saveChannelData(int channel, int dataLength)
 {
 	char *buf = (char *)malloc(dataLength * sizeof(char)); 
 	memset(buf, 0 , dataLength * sizeof(char));
@@ -55,7 +55,7 @@ void ds4052::saveChannelData(int dataLength)
 	// 读取结果
 	viScanf(vi, ViString("%t\n"), buf);
 
-	std::string path = "./data/data" + std::to_string(count) + ".txt";
+	std::string path = "./data/CH" + std::to_string(channel) + "_data" + std::to_string(count) + ".txt";
 	count++;
 	//打开文件
 	FILE *outFile = fopen(path.c_str(), "w");

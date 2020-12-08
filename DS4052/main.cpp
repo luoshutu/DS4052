@@ -9,19 +9,28 @@ int main()
 
 	// 连接示波器
 	theDS4052.initConnect();
-	// 设为通道一
-	theDS4052.setChannel(1);
-	
-	char status = 0;
-	while (std::cin >> status)
+
+	int status = 0;
+	while (1)
 	{
-		if (status == 100)
+		// 设置通道
+		std::cout << "请输入通道号（输入 -1 退出）" << std::endl;
+		std::cin >> status;
+
+		
+		if (status == -1)
 		{
 			break;
 		}
-		else
+		else if(status == 1)
 		{
-			theDS4052.saveChannelData(2048);
+			theDS4052.setChannel(1);
+			theDS4052.saveChannelData(1, 2048);
+		}
+		else if (status == 2)
+		{
+			theDS4052.setChannel(2);
+			theDS4052.saveChannelData(2, 2048);
 		}
 	}
 	
@@ -29,4 +38,5 @@ int main()
 	theDS4052.~ds4052();
 
 	std::cout << "Hello World!\n";
+	system("pause");
 }

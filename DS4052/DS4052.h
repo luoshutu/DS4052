@@ -27,7 +27,7 @@ public:
 	// 设置通道
 	void setChannel(int channel);
 	// 存储数据
-	void saveChannelData(int dataLength);
+	void saveChannelData(int channel, int dataLength);
 	// 初始化接口，连接示波器
 	void initConnect();
 
